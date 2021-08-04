@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import Home from "./components/Home.js";
+import Navbar from "./components/Layout/Navbar.js";
+import {HashRouter,Switch,Route} from "react-router-dom";
+import AddUser from './components/userdata/AddUser';
+import EditUser from './components/userdata/EditUser';
+import ViewUser from './components/userdata/ViewUser';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <HashRouter>
+        <Navbar />
+        
+          <Switch>
+            
+            <Route exact path="/"> 
+            <Home /> 
+            </Route>
+
+            <Route exact path="/users/add"> 
+              <AddUser /> 
+            </Route>
+
+            <Route exact path="/users/edit/:id"> 
+              <EditUser /> 
+            </Route>
+
+            <Route exact path="/users/view/:id"> 
+              <ViewUser /> 
+            </Route>
+
+          </Switch>
+      </HashRouter>
+        
     </div>
   );
 }
